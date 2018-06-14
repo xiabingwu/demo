@@ -1,22 +1,71 @@
-// React.cloneElement(
-//     element,
-//     [props],
-//     [...children]
-//   )
-// Clone and return a new React element using element as the starting point. 
-// The resulting element will have the original element’s props with the new props merged in shallowly. 
-// New children will replace existing children. key and ref from the original element will be preserved.
-import React, { cloneElement,PureComponent } from 'react';
+
+import React, { createElement,cloneElement,PureComponent } from 'react';
 import ReactDOM from 'react-dom';
-function Test(){
-    return '';
-    //return null;
+function Test(props){
+    return <p {...props} />
 }
-class App extends PureComponent{
-    render(){
-        let tree=<Test />
-        console.log(tree)
-        return cloneElement(tree)
+
+function componentHoc(Wrapcomponent){
+    return class extends PureComponent {
+        render(){
+            let props={...this.props}
+            props.onClick=()=>{
+                alert('你好，腾讯！');
+            }
+            return <Wrapcomponent {...props} />
+        }
     }
 }
-ReactDOM.render(<App  />, document.getElementById('root'));
+const App=componentHoc(Test);
+ReactDOM.render(<App>hello tencent</App>, document.getElementById('root'));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//
+// function componentHoc(Wrapcomponent){
+//     return class extends PureComponent {
+//         render(){
+//             const newTree = cloneElement(<Wrapcomponent  />,{
+//                 ...this.props,
+//                 onClick:()=>{
+//                     alert('你好，腾讯！');
+//                 }
+//             },<span>你好腾讯</span>)
+//             console.log(newTree)
+//             return newTree
+//         }
+//     }
+// }
