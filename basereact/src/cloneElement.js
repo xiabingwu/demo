@@ -12,12 +12,13 @@ function componentHoc(Wrapcomponent){
             props.onClick=()=>{
                 alert('你好，腾讯！');
             }
+            //props.children=<span>你好,腾讯！</span>
             return <Wrapcomponent {...props} />
         }
     }
 }
 const App=componentHoc(Test);
-ReactDOM.render(<App>hello tencent</App>, document.getElementById('root'));
+ReactDOM.render(<App id="app">hello tencent</App>, document.getElementById('root'));
 
 
 
@@ -58,8 +59,7 @@ ReactDOM.render(<App>hello tencent</App>, document.getElementById('root'));
 // function componentHoc(Wrapcomponent){
 //     return class extends PureComponent {
 //         render(){
-//             const newTree = cloneElement(<Wrapcomponent  />,{
-//                 ...this.props,
+//             const newTree = cloneElement(<Wrapcomponent {...this.props} />,{
 //                 onClick:()=>{
 //                     alert('你好，腾讯！');
 //                 }
@@ -68,4 +68,19 @@ ReactDOM.render(<App>hello tencent</App>, document.getElementById('root'));
 //             return newTree
 //         }
 //     }
+// }
+
+//可以在Wrapcomponent上给p加一个click事件吗
+
+
+
+
+
+
+// const App=function(){
+//     return cloneElement(<p>你好，腾讯</p>,{
+//         onClick:()=>{
+//             alert('你好，腾讯！');
+//         }
+//     })
 // }
