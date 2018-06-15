@@ -17,17 +17,18 @@ function counter(state = 0, action) {
   }
 }
 
-let store = createStore(combineReducers({ counter }),applyMiddleware(logMiddleware,thunk));
+let store = createStore(combineReducers({ counter }),applyMiddleware(thunk,logMiddleware));
 
 store.subscribe(() =>
   console.info('state发生改变', store.getState())
 );
 
-store.dispatch({ type: 'INCREMENT' });
+//store.dispatch({ type: 'INCREMENT' });
 
 store.dispatch(function(dispatch){
     //ajax调用 
     //结果返回
     //
-    dispatch({type:'INCREMENT'})
+    //dispatch({type:'INCREMENT'})
 });
+//最后一环才是默认的dispatch
