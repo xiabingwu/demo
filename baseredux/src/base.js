@@ -1,5 +1,4 @@
-import { createStore, combineReducers } from './redux/index';
-
+import { createStore, combineReducers,applyMiddleware,compose } from './redux/index';
 //counter reducer
 function counter(state = 0, action) {
   switch (action.type) {
@@ -37,10 +36,26 @@ function future(state = '', action) {
       return state;
   }
 }
-let store = createStore(combineReducers({ counter, word }));
+//自定义日志一个中间件
+let logMiddleware =  store => next => action => {
+  console.log('dispatch:',action.type);
+  return next(action);
+};
+let storeEnhancer=function(createStore){
+  return function(...args){
+    let store=createStore(...args);
+    store.say=function(){
+      return 'hello tencent';
+    }
+    return store
+  }
+}
+let store = createStore(combineReducers({ counter, word }),compose(applyMiddleware(logMiddleware),storeEnhancer));
 
-store.subscribe(() =>
+store.subscribe(() =>{
+  console.log(store.say())
   console.info('state发生改变', store.getState())
+}
 );
 
 store.dispatch({ type: 'INCREMENT' });
