@@ -39,6 +39,7 @@ function getServedPath(appPackageJson) {
 }
 const argv = require('yargs').argv;
 var appIndex=argv.appIndex?`src/${argv.appIndex}`:'src/index.js';
+console.log(argv)
 // config after eject: we're in ./config/
 module.exports = {
   dotenv: resolveApp('.env'),
