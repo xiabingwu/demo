@@ -7,8 +7,9 @@ yarn start --appIndex react-width-redux-1.js
 #如何抽离react和redux相结合通用逻辑
 yarn start --appIndex react-width-redux-2.js
 #如何避免不相干state对组件的影响
-yarn start --appIndex react-width-redux-3.js
-#如果减少不必要的渲染
-yarn start --appIndex react-width-redux-4.js
+yarn start --appIndex react-width-redux-3.1.js
+yarn start --appIndex react-width-redux-3.2.js
+yarn start --appIndex react-width-redux-3.3.js
+总结contect干了哪些事情
 #深层组件获取store
-yarn start --appIndex react-width-redux-5.js
+yarn start --appIndex react-width-redux-4.js

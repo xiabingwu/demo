@@ -18,7 +18,7 @@ function counter(state = { num: 0 }, action) {
 }
 let store = createStore(counter);
 
-class App extends PureComponent {
+class App extends Component {
     add = () => {
         store.dispatch({ type: 'INCREMENT' });
     }
@@ -27,14 +27,13 @@ class App extends PureComponent {
     }
     componentWillMount() {
         this.setState(store.getState())
-    }
-    componentDidMount() {
         store.subscribe(() => {
             var newState = store.getState();
             console.log('newState', newState);
             this.setState(newState);
         });
     }
+
     render() {
         return (<div>
             <p>num:{this.state.num} </p>
