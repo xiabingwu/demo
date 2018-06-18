@@ -36,12 +36,10 @@ var run=sagaMiddleware.run;
 sagaMiddleware.run=function(key,saga){//封装run，让其能关闭任务
     store.dispatch({ type: 'CANCEL_SAGA' })
     run(function*(){
-        var task1=yield fork(function*(){
-            yield takeEvery(key, saga)
-        })
+        var task1=yield takeEvery(key, saga)
         yield fork(function*(){
             yield take('CANCEL_SAGA')
-            cancel(task1)
+            yield cancel(task1)
         })
     })
 }

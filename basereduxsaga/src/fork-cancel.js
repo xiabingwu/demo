@@ -17,7 +17,7 @@ function* doAsync() {//异步 要明确fork的起点
 }
 function* main(){
     yield call(doAsync)
-   
+    yield cancel()
     console.log('完成')
 }
 const sagaMiddleware = createSagaMiddleware()

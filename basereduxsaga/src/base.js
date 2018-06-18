@@ -29,16 +29,14 @@ store.subscribe(() =>{
   console.log(store.getState())
 });
 
-// sagaMiddleware.run(function* () {
-//   yield takeEvery('INCREMENT_ASYNC', incrementAsync)
-// })
-store.dispatch({ type: 'INCREMENT' });
-store.dispatch({ type: 'INCREMENT_ASYNC' });//不会被saga捕获到
-store.dispatch({ type: 'INCREMENT_ASYNC' });//不会被saga捕获到
-store.dispatch({ type: 'INCREMENT_ASYNC' });//不会被saga捕获到
+sagaMiddleware.run(incrementAsync)//+1
+store.dispatch({ type: 'INCREMENT' });//+1
+store.dispatch({ type: 'incrementAsync' });//不会被saga捕获到
+store.dispatch({ type: 'incrementAsync' });//不会被saga捕获到
+store.dispatch({ type: 'incrementAsync' });//不会被saga捕获到
 
 
 
 // sagaMiddleware.run(function* () {
-//   yield takeEvery('INCREMENT_ASYNC', incrementAsync)
+//   yield takeEvery('incrementAsync', incrementAsync)
 // })
