@@ -9,13 +9,15 @@ function* doResoveDelay(ms){
     yield call(resolveDelay,ms)
     console.log(`执行完毕delay:${ms}`)
 }
-function* doAsync() {//异步 
+function* doAsync() {//异步 要明确fork的起点
         var task1=yield fork(doResoveDelay,1000)
-        yield fork(doResoveDelay,3000)
-        yield cancel(task1)//不会影响主任务和其他子任务
+        var task2=yield fork(doResoveDelay,3000)
+        //yield cancel(task1)//不会影响doAsync和task2
+        //yield cancel()//task1和task2会被终止
 }
 function* main(){
     yield call(doAsync)
+   
     console.log('完成')
 }
 const sagaMiddleware = createSagaMiddleware()

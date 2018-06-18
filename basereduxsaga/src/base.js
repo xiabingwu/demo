@@ -15,7 +15,7 @@ function counter(state = 0, action) {//同步
   }
 }
 function* incrementAsync() {//异步 
-    yield resolveDelay(1000)
+    yield call(resolveDelay,1000)
     yield put({ type: 'INCREMENT' })
 }
 
@@ -29,7 +29,16 @@ store.subscribe(() =>{
   console.log(store.getState())
 });
 
-sagaMiddleware.run(incrementAsync)//incrementAsync会被立即执行
-
+// sagaMiddleware.run(function* () {
+//   yield takeEvery('INCREMENT_ASYNC', incrementAsync)
+// })
 store.dispatch({ type: 'INCREMENT' });
-store.dispatch({ type: 'INCREMENT_ASYNC' });
+store.dispatch({ type: 'INCREMENT_ASYNC' });//不会被saga捕获到
+store.dispatch({ type: 'INCREMENT_ASYNC' });//不会被saga捕获到
+store.dispatch({ type: 'INCREMENT_ASYNC' });//不会被saga捕获到
+
+
+
+// sagaMiddleware.run(function* () {
+//   yield takeEvery('INCREMENT_ASYNC', incrementAsync)
+// })
