@@ -10,10 +10,10 @@ import { NAMESPACE_SEP } from './constants';
 import prefixType from './prefixType';
 
 export default function getSaga(effects, model, onError, onEffect) {
-  console.log('onEffect',onEffect);
+
   return function*() {
     for (const key in effects) {
-      console.log(key);
+
       if (Object.prototype.hasOwnProperty.call(effects, key)) {
         const watcher = getWatcher(key, effects[key], model, onError, onEffect);
         const task = yield sagaEffects.fork(watcher);
