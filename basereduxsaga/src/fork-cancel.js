@@ -1,18 +1,22 @@
 import { createStore, applyMiddleware } from './redux/index'
 import createSagaMiddleware from './redux-saga/index'
-import { call, put, takeEvery, takeLatest,fork } from './redux-saga/effects'
+import { call, cancel,fork } from './redux-saga/effects'
 import { resolve } from 'url';
 const resolveDelay = (ms) => new Promise((resolve,reject) => setTimeout(()=>{
-    console.log(`执行完毕delay:${ms}`)
     resolve()
 }, ms))
+function* doResoveDelay(ms){
+    yield call(resolveDelay,ms)
+    console.log(`执行完毕delay:${ms}`)
+}
 function* doAsync() {//异步 
-        yield fork(resolveDelay,1000)
-        yield fork(resolveDelay,3000)
+        var task1=yield fork(doResoveDelay,1000)
+        yield fork(doResoveDelay,3000)
+        yield cancel(task1)//不会影响主任务和其他子任务
 }
 function* main(){
     yield call(doAsync)
-    console.log('完成')//两个fork task执行完后才执行
+    console.log('完成')
 }
 const sagaMiddleware = createSagaMiddleware()
 const store = createStore(
