@@ -57,8 +57,3 @@ setTimeout(function(){
     store.dispatch({ type: 'INCREMENT_ASYNC' });
     store.dispatch({ type: 'INCREMENT_ASYNC' });
 },5000)
-
-
-// sagaMiddleware.run(function* () {
-//   yield takeEvery('INCREMENT_ASYNC', incrementAsync)
-// })
