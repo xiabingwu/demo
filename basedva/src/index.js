@@ -3,9 +3,16 @@ import dva, { connect } from './dva';
 import createLoading from './dva-loading/src/';
 // 1. Initialize
 const app = dva({
-  onStateChange(state) {
-    console.log(state)
-  }
+    // history,
+    // initialState,
+    // onError,
+    // onAction,
+    // onStateChange,
+    // onReducer,
+    // onEffect,
+    // onHmr,
+    // extraReducers,
+    // extraEnhancers,
 });
 
 app.use(createLoading({ effects: true }));
@@ -31,7 +38,6 @@ app.model({
 
 // 3. View
 const App = connect((state) => {
-  console.log('state', state);
   return {
     count: state.count
   }
