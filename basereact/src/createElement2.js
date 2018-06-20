@@ -70,7 +70,7 @@ ReactDOM.render(<App id="app">hello tencent</App>, document.getElementById('root
 //     }
 // }
 
-//可以在Wrapcomponent上给p加一个click事件吗
+
 
 
 

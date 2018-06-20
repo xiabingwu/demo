@@ -66,3 +66,14 @@ store.dispatch({ type: 'TENCENT' });
 store.replaceReducer(future); //dispatch了一次ActionTypes.REPLACE
 store.dispatch({ type: 'SLEEP' });
 
+
+
+
+
+
+
+//react-router-redux
+//https://github.com/reactjs/react-router-redux
+//redux-form官网demo
+//https://codesandbox.io/s/mZRjw05yp
+//dva如果分页面使用redux-form

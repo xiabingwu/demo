@@ -6,13 +6,13 @@ import ReactDOM from 'react-dom';
 // const App=function(props){
 //     return <h1 {...props}></h1>
 // }
-//一个react组件
+//一个React.Fragment
+//一个class
 class App extends PureComponent {
     render(){
         return <h1 {...this.props}></h1>
     }
 }
-
 
 ReactDOM.render(<App>hello tencent</App>, document.getElementById('root'));
 
