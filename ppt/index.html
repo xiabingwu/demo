@@ -5,7 +5,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-	<title>reveal.js</title>
+	<title>从react到dva</title>
 
 	<link rel="stylesheet" href="css/reveal.css">
 	<link rel="stylesheet" href="css/theme/black.css">
@@ -99,23 +99,34 @@
 				</section>
 				<section>
 					<h2>温故而知新</h2>
-					<p>state（构建（依赖key,一次构建、没有命名空间）、新的state、监听）</p>
-					<p>中间件</p>
-					<p>dispatch(action)------>state</p>
+					<pre>
+						<code class="hljs" data-trim>
+							yarn start base.js
+						</code>
+					</pre>
 				</section>
 				<section>
 					<h2>state解读</h2>
+					<p>依赖key</p>
+					<p>全量构建</p>
+					<p>纯函数
+						<span style="font-size: 10px;display: none;">dispatch(action)------>state</span>
+					</p>
+					<p>命名冲突</p>
+					<pre>
+						<code class="hljs" data-trim>
+							yarn start namespace.js#dva
+						</code>
+					</pre>
 				</section>
 				<section>
 					<h2>中间件认知</h2>
 					<pre>
 						<code class="hljs" data-trim>
+							yarn start middleware.js
 							yarn start log.js
 						</code>
 					</pre>
-				</section>
-				<section>
-					<h2>纯函数与error</h2>
 				</section>
 				<section>
 					<h2 style="font-size: 1.5em;">为什么redux、react可以结合使用</h2>
@@ -167,12 +178,18 @@
 				</section>
 				<section>
 					<h2>温故而知新</h2>
+					<pre>
+						<code class="hljs" data-trim>
+							yarn start base.js
+						</code>
+					</pre>
 				</section>				
 				<section>
 					<h2>reject会抛出异常</h2>
 					<pre>
 						<code class="hljs" data-trim>
-							
+							yarn start reject.js
+							yarn start reject.js#dva
 						</code>
 					</pre>
 				</section>
@@ -180,7 +197,7 @@
 					<h2>错误处理方式</h2>
 					<pre>
 						<code class="hljs" data-trim>
-							
+							yarn start error.js
 						</code>
 					</pre>
 				</section>
@@ -188,7 +205,9 @@
 					<h2>fork注意事项</h2>
 					<pre>
 						<code class="hljs" data-trim>
-							
+							yarn start fork.js
+							yarn start fork-cancel.js
+							yarn start fork-error.js
 						</code>
 					</pre>
 				</section>								
