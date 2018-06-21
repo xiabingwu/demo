@@ -31,6 +31,6 @@ function C(dispatch){
         return result;
     }
 }
-let newDispatch=compose(A,B,C)
+let newDispatch=compose(A,B,C)//compose(A,compose(B,C))
 let result=newDispatch(store.dispatch)({type:'hello'})
 console.log(result)
