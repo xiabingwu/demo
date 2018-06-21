@@ -9,10 +9,4 @@ yarn start  cloneElementAttr.js
 yarnt start  hocSuperRender.js
 #高级组件如何传递额外参数
 yarnt start  hocParams.js
-浅比较陷阱
-https://reactjs.org/docs/react-api.html#createelement
-
-https://reactjs.org/docs/react-api.html#cloneelement
-
-
-yarn start 
+#浅比较陷阱

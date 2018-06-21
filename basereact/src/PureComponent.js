@@ -25,3 +25,7 @@ class App extends PureComponent {
     }
 }
 ReactDOM.render(<App />, document.getElementById('root'));
+
+
+//react-purecomponent-pitfalls
+//https://blog.shakacode.com/react-purecomponent-pitfalls-d057882f4b6e

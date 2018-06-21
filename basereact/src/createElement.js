@@ -16,3 +16,7 @@ class App extends PureComponent {
 
 ReactDOM.render(<App>hello tencent</App>, document.getElementById('root'));
 
+// React.createElement
+// https://reactjs.org/docs/react-api.html#createelement
+// React.cloneElement
+// https://reactjs.org/docs/react-api.html#cloneelement

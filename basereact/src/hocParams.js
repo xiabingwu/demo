@@ -1,33 +1,38 @@
 import React, { createElement,cloneElement,PureComponent } from 'react';
 import ReactDOM from 'react-dom';
 
-class Test extends PureComponent{
+class Tencent extends PureComponent{
     render(){
-        return <p {...this.props} />
+        const {message}=this.props;
+        return <p>{message} tencent</p>
     }
 }
 
-function componentHoc(name,Wrapcomponent){
+function componentHoc(message,Wrapcomponent){
     return class extends PureComponent {
         render(){
-            let props={...this.props}
-            props.onClick=()=>{
-                alert(`你好，${name}！`);
-            }
-            //props.children=<span>你好,腾讯！</span>
-            return <Wrapcomponent {...props} />
+            const newProps={message};
+            return <Wrapcomponent {...this.props} {...newProps} />
         }
     }
 }
-const App=componentHoc('腾讯',Test);
+const T=componentHoc('hello',Tencent);
 
-ReactDOM.render(<App id="app">hello tencent</App>, document.getElementById('root'));
+ReactDOM.render(<div>
+    <T />
+</div>, document.getElementById('root'));
 
 
-//缺陷：
-//
-//不能更好的抽象
-//不能使用修饰符语法糖
+
+
+
+
+
+
+
+
+//curry
+//https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch4.html#%E4%B8%8D%E5%8F%AF%E6%88%96%E7%BC%BA%E7%9A%84-curry
 
 
 // function componentHoc(name){
