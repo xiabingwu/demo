@@ -1,4 +1,4 @@
-import { createStore, combineReducers,applyMiddleware,compose } from './redux/index';
+import { createStore, combineReducers, applyMiddleware, compose } from './redux/index';
 //counter reducer
 function counter(state = 0, action) {
   switch (action.type) {
@@ -23,48 +23,31 @@ function word(state = '', action) {
       return state;
   }
 }
-//future reducer
-function future(state = '', action) {
-  switch (action.type) {
-    case 'SAY':
-      return '说话';
-      break;
-    case 'SLEEP':
-      return '睡觉';
-      break;
-    default:
-      return state;
-  }
-}
 //自定义日志一个中间件
-let logMiddleware =  store => next => action => {
-  console.log('dispatch:',action.type);
+let logMiddleware = store => next => action => {
+  console.log('dispatch:', action.type);
   return next(action);
 };
-let storeEnhancer=function(createStore){
-  return function(...args){
-    let store=createStore(...args);
-    store.say=function(){
+let storeEnhancer = function (createStore) {
+  return function (...args) {
+    let store = createStore(...args);
+    store.say = function () {
       return 'hello tencent';
     }
     return store
   }
 }
-let store = createStore(combineReducers({ counter, word }),compose(applyMiddleware(logMiddleware),storeEnhancer));
+let store = createStore(combineReducers({ counter, word }), compose(applyMiddleware(logMiddleware), storeEnhancer));
 
-store.subscribe(() =>{
-  console.log(store.say())
+console.log('say:',store.say())
+store.subscribe(() => {
   console.info('state发生改变', store.getState())
-}
-);
+});
 
 store.dispatch({ type: 'INCREMENT' });
 
 store.dispatch({ type: 'TENCENT' });
 
-
-store.replaceReducer(future); //dispatch了一次ActionTypes.REPLACE
-store.dispatch({ type: 'SLEEP' });
 
 
 
@@ -76,4 +59,6 @@ store.dispatch({ type: 'SLEEP' });
 //https://github.com/reactjs/react-router-redux
 //redux-form官网demo
 //https://codesandbox.io/s/mZRjw05yp
-//dva如果分页面使用redux-form
+
+
+//dva如果分页面如何使用redux-form
