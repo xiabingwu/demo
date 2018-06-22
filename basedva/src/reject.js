@@ -13,7 +13,7 @@ app.model({
     state: 0,
     effects: {
         *doAsync({ payload }, { call, put, select }) {//异步 
-            //try {
+            //try {这里不做捕获就往上抛
                 yield call(rejectDelay,10)
             //} catch (e) {
             //    console.log('出现异常啦')

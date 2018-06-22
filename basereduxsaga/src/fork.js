@@ -1,7 +1,6 @@
 import { createStore, applyMiddleware } from './redux/index'
 import createSagaMiddleware from './redux-saga/index'
 import { call, put, takeEvery, takeLatest,fork } from './redux-saga/effects'
-import { resolve } from 'url';
 const resolveDelay = (ms) => new Promise((resolve,reject) => setTimeout(()=>{
     console.log(`执行完毕delay:${ms}`)
     resolve()
@@ -21,3 +20,8 @@ const store = createStore(
 )
 sagaMiddleware.run(main)
 store.dispatch({ type: 'doAsync' });
+
+
+
+//fork
+//https://redux-saga.js.org/docs/advanced/ForkModel.html

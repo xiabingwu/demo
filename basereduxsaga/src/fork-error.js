@@ -1,7 +1,9 @@
 import { createStore, applyMiddleware } from './redux/index'
 import createSagaMiddleware from './redux-saga/index'
 import { call, put, takeEvery, takeLatest,fork } from './redux-saga/effects'
-import { resolve } from 'url';
+const resolveDelay = (ms) => new Promise((resolve,reject) => setTimeout(()=>{
+    resolve()
+}, ms))
 const rejectDelay = (ms) => new Promise((resolve,reject) => setTimeout(()=>{
     reject()
 }, ms))
@@ -16,12 +18,13 @@ function* doAsync() {//异步
     }catch(e){
         console.log('doAsync捕获到异常')
     }
+    //throw {message:'error'};//终止本身和fork出来的任务
 }
 function* main(){
     try{
         yield call(doAsync)
         console.log('完成')
-    }catch(e){//主任务捕获异常
+    }catch(e){//异常会在外层调用处捕获
         console.log('main捕获到了异常')
     }
 }

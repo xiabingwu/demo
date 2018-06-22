@@ -1,7 +1,6 @@
 import { createStore, applyMiddleware } from './redux/index'
 import createSagaMiddleware from './redux-saga/index'
 import { call, put, takeEvery, takeLatest } from './redux-saga/effects'
-import { resolve } from 'url';
 const apiPromise = (flag) => {
     return new Promise((resolve, reject) => {
         resolve({flag})

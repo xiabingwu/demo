@@ -1,7 +1,6 @@
 import { createStore, applyMiddleware } from './redux/index'
 import createSagaMiddleware from './redux-saga/index'
 import { call, cancel,fork } from './redux-saga/effects'
-import { resolve } from 'url';
 const resolveDelay = (ms) => new Promise((resolve,reject) => setTimeout(()=>{
     resolve()
 }, ms))
@@ -12,12 +11,13 @@ function* doResoveDelay(ms){
 function* doAsync() {//异步 要明确fork的起点
         var task1=yield fork(doResoveDelay,1000)
         var task2=yield fork(doResoveDelay,3000)
-        //yield cancel(task1)//不会影响doAsync和task2
+        // yield cancel(task1)//不会影响doAsync和task2
+        // yield fork(doResoveDelay,500)
         yield cancel()//task1和task2会被终止
 }
 function* main(){
     yield call(doAsync)
-    //yield cancel()
+    //yield cancel()//这里取消的是main
     console.log('完成')
 }
 const sagaMiddleware = createSagaMiddleware()

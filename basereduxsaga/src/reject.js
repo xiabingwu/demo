@@ -1,8 +1,11 @@
 import { createStore, applyMiddleware } from './redux/index'
 import createSagaMiddleware from './redux-saga/index'
 import { call, put, takeEvery, takeLatest } from './redux-saga/effects'
-import { resolve } from 'url';
 const rejectDelay = (ms) => new Promise((resolve,reject) => setTimeout(reject, ms))
+
+// rejectDelay(10).catch(function(e){
+//     console.log(e)
+// })
 function* doAsync() {//异步 
     try{
         yield rejectDelay(1000)
