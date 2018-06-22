@@ -25,7 +25,7 @@ app.model({
     add(count) { return count + 1 },
     minus(count) { return count - 1 },
   },
-  effects: {
+  effects: {//https://github.com/dvajs/dva/blob/master/docs/API.md#effects
     *effectsAdd({ payload }, { select, call, put }) {
       let count = yield select(state => {
         return state

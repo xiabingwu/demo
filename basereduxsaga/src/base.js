@@ -1,4 +1,4 @@
-import { createStore, applyMiddleware } from './redux/index'
+import { createStore,combineReducers, applyMiddleware } from './redux/index'
 import createSagaMiddleware from './redux-saga/index'
 import { call, put, takeEvery, takeLatest } from './redux-saga/effects'
 const resolveDelay = (ms) => new Promise((resolve,reject) => setTimeout(resolve, ms))
@@ -22,7 +22,7 @@ function* incrementAsync() {//异步
 const sagaMiddleware = createSagaMiddleware()
 
 const store = createStore(
-  counter,
+  combineReducers({counter}),
   applyMiddleware(sagaMiddleware)
 )
 store.subscribe(() =>{
@@ -43,6 +43,13 @@ store.dispatch({ type: 'incrementAsync' });
 
 
 //提问incrementAsync为什么没有被捕获到
+
+
+
+
+
+
+
 
 // sagaMiddleware.run(function* () {
 //   yield takeEvery('incrementAsync', incrementAsync)
