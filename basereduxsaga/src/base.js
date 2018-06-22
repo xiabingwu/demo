@@ -4,7 +4,7 @@ import { call, put, takeEvery, takeLatest } from './redux-saga/effects'
 const resolveDelay = (ms) => new Promise((resolve,reject) => setTimeout(resolve, ms))
 
 function counter(state = 0, action) {//同步 
-  console.log('type',action.type)
+  //console.log('type',action.type)
   switch (action.type) {
   case 'INCREMENT':
     return state + 1;
@@ -29,13 +29,20 @@ store.subscribe(() =>{
   console.log(store.getState())
 });
 
-sagaMiddleware.run(incrementAsync)//+1
-store.dispatch({ type: 'INCREMENT' });//+1
-store.dispatch({ type: 'incrementAsync' });//不会被saga捕获到
-store.dispatch({ type: 'incrementAsync' });//不会被saga捕获到
-store.dispatch({ type: 'incrementAsync' });//不会被saga捕获到
+sagaMiddleware.run(incrementAsync);
+store.dispatch({ type: 'INCREMENT' });
+store.dispatch({ type: 'incrementAsync' });
+store.dispatch({ type: 'incrementAsync' });
+store.dispatch({ type: 'incrementAsync' });
 
 
+
+
+
+
+
+
+//提问incrementAsync为什么没有被捕获到
 
 // sagaMiddleware.run(function* () {
 //   yield takeEvery('incrementAsync', incrementAsync)
