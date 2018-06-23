@@ -107,17 +107,20 @@
 				</section>
 				<section>
 					<h2>state解读</h2>
-					<p>依赖key</p>
-					<p>全量构建</p>
-					<p>纯函数
-						<span style="font-size: 10px;display: none;">dispatch(action)------>state</span>
+					<p class="fragment">强关联</p>
+					<p class="fragment">全量构建</p>
+					<p class="fragment">纯函数
+						<aside class="notes">dispatch(action)------>state</aside>
 					</p>
-					<p>命名冲突</p>
-					<pre>
-						<code class="hljs" data-trim>
-							yarn start namespace.js#dva
-						</code>
-					</pre>
+					<p class="fragment">
+						命名冲突
+						<pre class="fragment">
+								<code class="hljs" data-trim>
+									yarn start namespace.js#dva
+								</code>
+							</pre>
+					</p>
+
 				</section>
 				<section>
 					<h2>中间件认知</h2>

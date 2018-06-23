@@ -1,22 +1,6 @@
 import React, { Component, PureComponent } from 'react';
 import { createStore } from './redux/index';
 import ReactDOM from 'react-dom';
-function counter(state = { num: 0 }, action) {
-    switch (action.type) {
-        case 'INCREMENT':
-            return {
-                num: ++state.num
-            }
-        case 'DECREMENT':
-            return {
-                num: --state.num
-            }
-        default:
-            return state;
-    }
-}
-let store = createStore(counter);
-
 function connect(Wrapcomponent){
     return class extends Component {
         componentWillMount() {
@@ -37,8 +21,25 @@ function connect(Wrapcomponent){
         }
     }
 }
+function counter(state = { num: 0 }, action) {
+    switch (action.type) {
+        case 'INCREMENT':
+            return {
+                num: ++state.num
+            }
+        case 'DECREMENT':
+            return {
+                num: --state.num
+            }
+        default:
+            return state;
+    }
+}
+let store = createStore(counter);
+
+
 @connect
-class App extends Component {
+class Counter extends Component {
     add = () => {
         const {dispatch}=this.props
         dispatch({ type: 'INCREMENT' });
@@ -57,4 +58,9 @@ class App extends Component {
         </div>)
     }
 }
-ReactDOM.render(<App />, document.getElementById('root'))
+const appTree = (
+    <div>
+        <Counter />
+    </div>
+)
+ReactDOM.render(appTree, document.getElementById('root'))

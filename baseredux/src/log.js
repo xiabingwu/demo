@@ -22,13 +22,9 @@ let store = createStore(combineReducers({ counter }),applyMiddleware(thunk,logMi
 store.subscribe(() =>
   console.info('state发生改变', store.getState())
 );
-
-//store.dispatch({ type: 'INCREMENT' });
-
 store.dispatch(function(dispatch){
     //ajax调用 
     //结果返回
     //
     //dispatch({type:'INCREMENT'})
 });
-//最后一环才是默认的dispatch

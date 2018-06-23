@@ -18,7 +18,7 @@ function counter(state = { num: 0 }, action) {
 }
 let store = createStore(counter);
 
-class App extends Component {
+class Counter extends Component {
     add = () => {
         store.dispatch({ type: 'INCREMENT' });
     }
@@ -42,4 +42,9 @@ class App extends Component {
         </div>)
     }
 }
-ReactDOM.render(<App />, document.getElementById('root'))
+const appTree = (
+    <div>
+        <Counter />
+    </div>
+)
+ReactDOM.render(appTree, document.getElementById('root'))

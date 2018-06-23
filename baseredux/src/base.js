@@ -59,6 +59,8 @@ store.dispatch({ type: 'TENCENT' });
 //https://github.com/reactjs/react-router-redux
 //redux-form官网demo
 //https://codesandbox.io/s/mZRjw05yp
+//extrareducers
+//https://github.com/dvajs/dva/blob/master/docs/API.md#extrareducers
 
 
-//dva如果分页面如何使用redux-form
+//dva如果懒加载redux-form

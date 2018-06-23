@@ -1,38 +1,6 @@
 import React, { Component, PureComponent } from 'react';
 import { createStore,combineReducers } from './redux/index';
 import ReactDOM from 'react-dom';
-function counter(state = { num: 0 }, action) {
-    switch (action.type) {
-        case 'INCREMENT':
-            return {
-                num: ++state.num
-            }
-        case 'DECREMENT':
-            return {
-                num: --state.num
-            }
-        default:
-            return state;
-    }
-}
-function word(state = '', action) {
-    switch (action.type) {
-      case 'HELLO':
-        return '你好';
-        break;
-      case 'TENCENT':
-        return '腾讯';
-        break;
-      default:
-        return state;
-    }
-  }
-let store = createStore(combineReducers({counter,word}));
-
-setTimeout(function(){//假设这里是其他组件发出的dispatch
-    store.dispatch({type:'TENCENT'})//
-},1000);
-
 function connect(Wrapcomponent){
     return class extends Component {
         componentWillMount() {
@@ -52,8 +20,39 @@ function connect(Wrapcomponent){
         }
     }
 }
+function counter(state = { num: 0 }, action) {
+    switch (action.type) {
+        case 'INCREMENT':
+            return {
+                num: ++state.num
+            }
+        case 'DECREMENT':
+            return {
+                num: --state.num
+            }
+        default:
+            return state;
+    }
+}
+function word(state = '', action) {
+    switch (action.type) {
+      case 'HELLO':
+        return '你好';
+      case 'TENCENT':
+        return '腾讯';
+      default:
+        return state;
+    }
+  }
+let store = createStore(combineReducers({counter,word}));
+
+setTimeout(function(){//假设这里是其他组件发出的dispatch
+    store.dispatch({type:'TENCENT'})//
+},1000);
+
+
 @connect
-class App extends Component {
+class Counter extends Component {
     add = () => {
         const {dispatch}=this.props
         dispatch({ type: 'INCREMENT' });
@@ -65,7 +64,7 @@ class App extends Component {
 
     render() {
         const {counter}=this.props;
-        console.log('App render')
+        console.log('Counter render')
         return (<div>
             <p>num:{counter.num} </p>
             <button onClick={this.add}>+</button>
@@ -73,4 +72,9 @@ class App extends Component {
         </div>)
     }
 }
-ReactDOM.render(<App />, document.getElementById('root'))
+const appTree = (
+    <div>
+        <Counter />
+    </div>
+)
+ReactDOM.render(appTree, document.getElementById('root'))
