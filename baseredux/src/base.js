@@ -10,15 +10,11 @@ function counter(state = 0, action) {
       return state;
   }
 }
-//word reducer
-function word(state = '', action) {
+//message reducer
+function message(state = '', action) {
   switch (action.type) {
     case 'HELLO':
-      return '你好';
-      break;
-    case 'TENCENT':
-      return '腾讯';
-      break;
+      return '你好，腾讯！';
     default:
       return state;
   }
@@ -28,6 +24,7 @@ let logMiddleware = store => next => action => {
   console.log('dispatch:', action.type);
   return next(action);
 };
+//扩张store
 let storeEnhancer = function (createStore) {
   return function (...args) {
     let store = createStore(...args);
@@ -37,7 +34,7 @@ let storeEnhancer = function (createStore) {
     return store
   }
 }
-let store = createStore(combineReducers({ counter, word }), compose(applyMiddleware(logMiddleware), storeEnhancer));
+let store = createStore(combineReducers({ counter, message }), compose(applyMiddleware(logMiddleware), storeEnhancer));
 
 console.log('say:',store.say())
 store.subscribe(() => {
@@ -46,7 +43,7 @@ store.subscribe(() => {
 
 store.dispatch({ type: 'INCREMENT' });
 
-store.dispatch({ type: 'TENCENT' });
+store.dispatch({ type: 'HELLO' });
 
 
 
