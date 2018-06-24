@@ -1,5 +1,5 @@
-import React, { Component, PureComponent } from 'react';
-import { createStore } from './redux/index';
+import React, { Component } from 'react';
+import { createStore,combineReducers } from './redux/index';
 import ReactDOM from 'react-dom';
 function connect(Wrapcomponent){
     return class extends Component {
@@ -35,7 +35,7 @@ function counter(state = { num: 0 }, action) {
             return state;
     }
 }
-let store = createStore(counter);
+let store = createStore(combineReducers({counter}));
 
 
 @connect
@@ -50,9 +50,9 @@ class Counter extends Component {
     }
 
     render() {
-        const {num}=this.props;
+        const {counter}=this.props;
         return (<div>
-            <p>num:{num} </p>
+            <p>num:{counter.num} </p>
             <button onClick={this.add}>+</button>
             <button onClick={this.minus}>-</button>
         </div>)

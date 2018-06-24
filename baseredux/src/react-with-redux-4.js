@@ -31,7 +31,7 @@ function connect(mapStateToProps) {
                 return <Wrapcomponent {...this.props} {...extraProps} />
             }
         }
-        Com.contextTypes = {
+        Com.contextTypes = {//这里的PropTypes是必须设置的否则取不到store
             store: storeShape
         };
         return Com
@@ -46,7 +46,7 @@ class Provider extends Component {
         return React.Children.only(this.props.children);
     }
 }
-Provider.childContextTypes = {
+Provider.childContextTypes = {//这里的PropTypes是必须设置的否则取不到store
     store: storeShape.isRequired
 }
 
@@ -64,24 +64,15 @@ function counter(state = { num: 0 }, action) {
             return state;
     }
 }
-function word(state = '', action) {
+function message(state = '', action) {
     switch (action.type) {
         case 'HELLO':
-            return '你好';
-        case 'TENCENT':
-            return '腾讯';
+        return '你好，腾讯！';
         default:
             return state;
     }
 }
-let store = createStore(combineReducers({ counter, word }));
-
-setTimeout(function () {//假设这里是其他组件发出的dispatch
-    console.log('dispatch TENCENT')
-    store.dispatch({ type: 'TENCENT' })//
-}, 1000);
-
-
+let store = createStore(combineReducers({ counter, message }));
 
 @connect(({ counter }) => {
     return {
@@ -108,10 +99,28 @@ class Counter extends Component {
         </div>)
     }
 }
-
+@connect(({message})=>{
+    return {
+        message:message
+    }
+})
+class Message extends Component{
+    hello=()=>{
+        const {dispatch}=this.props
+        dispatch({ type: 'HELLO' });
+    }
+    render(){
+        console.log('Message render')
+        return (<div>
+            {this.props.message}
+            <button onClick={this.hello}>click me</button>
+        </div>)
+    }
+}
 const appTree = (
     <div>
         <Counter />
+        <Message />
     </div>
 )
 ReactDOM.render(<Provider store={store}>

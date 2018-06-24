@@ -1,7 +1,6 @@
-import React, { Component, PureComponent } from 'react';
-import { createStore } from './redux/index';
+import React, { Component } from 'react';
+import { createStore,combineReducers } from './redux/index';
 import ReactDOM from 'react-dom';
-import { stat } from 'fs';
 function counter(state = { num: 0 }, action) {
     switch (action.type) {
         case 'INCREMENT':
@@ -16,7 +15,7 @@ function counter(state = { num: 0 }, action) {
             return state;
     }
 }
-let store = createStore(counter);
+let store = createStore(combineReducers({counter}));
 
 class Counter extends Component {
     add = () => {
@@ -36,7 +35,7 @@ class Counter extends Component {
 
     render() {
         return (<div>
-            <p>num:{this.state.num} </p>
+            <p>num:{this.state.counter.num} </p>
             <button onClick={this.add}>+</button>
             <button onClick={this.minus}>-</button>
         </div>)
