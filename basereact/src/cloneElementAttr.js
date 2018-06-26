@@ -13,7 +13,7 @@ const App=function(props){
         }
     })
     return (<div>
-        你是男生吗？{okBtn}
+        修改后的按钮字体颜色{okBtn}
     </div>)
 };
 ReactDOM.render(<App okBtn={<Button type='primary'>确定</Button>} />, document.getElementById('root'));
