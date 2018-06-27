@@ -35,19 +35,14 @@ ReactDOM.render(<div>
 //https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch4.html#%E4%B8%8D%E5%8F%AF%E6%88%96%E7%BC%BA%E7%9A%84-curry
 
 
-// function componentHoc(name){
+// function componentHoc(message){
 //     return function(Wrapcomponent){
 //         return class extends PureComponent {
 //             render(){
-//                 let props={...this.props}
-//                 props.onClick=()=>{
-//                     alert(`你好，${name}！`);
-//                 }
-//                 //props.children=<span>你好,腾讯！</span>
-//                 return <Wrapcomponent {...props} />
+//                 const newProps={message};
+//                 return <Wrapcomponent {...this.props} {...newProps} />
 //             }
 //         }
 //     }
-
 // }
-// const App=componentHoc('腾讯')(Test);
+// const T=componentHoc('hello')(Tencent);

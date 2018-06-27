@@ -76,11 +76,3 @@ ReactDOM.render(<App id="app">hello tencent</App>, document.getElementById('root
 
 
 
-
-// const App=function(){
-//     return cloneElement(<p>你好，腾讯</p>,{
-//         onClick:()=>{
-//             alert('你好，腾讯！');
-//         }
-//     })
-// }
