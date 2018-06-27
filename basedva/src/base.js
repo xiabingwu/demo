@@ -15,7 +15,7 @@ const app = dva({
   // extraReducers,
   // extraEnhancers,
 });
-
+//插件能力
 app.use(createLoading({ effects: true }));
 
 // 2. Model
@@ -33,9 +33,6 @@ app.model({
   },
   effects: {//https://github.com/dvajs/dva/blob/master/docs/API.md#effects
     *effectsMinus({ payload }, { select, call, put }) {
-      let count = yield select(state => {
-        return state
-      });
       yield put({ type: 'minus' })
     }
   }
@@ -63,5 +60,7 @@ app.router(() => <App />);
 // 5. Start
 app.start('#root');
 
+//dva concept
+//https://github.com/dvajs/dva/blob/master/docs/Concepts.md
 //dva api
 //https://github.com/dvajs/dva/blob/master/docs/API.md

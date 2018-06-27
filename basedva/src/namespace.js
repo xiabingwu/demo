@@ -1,6 +1,5 @@
 import React from 'react';
 import dva, { connect } from './dva';
-import createLoading from './dva-loading/src/';
 //改编自官网demo
 //自定义日志一个中间件
 let logMiddleware = store => next => action => {
@@ -12,7 +11,6 @@ const app = dva({
     onAction: logMiddleware
 });
 
-app.use(createLoading({ effects: true }));
 
 // 2. Model
 app.model({
@@ -29,9 +27,6 @@ app.model({
     },
     effects: {//https://github.com/dvajs/dva/blob/master/docs/API.md#effects
         *effectsMinus({ payload }, { select, call, put }) {
-            let count = yield select(state => {
-                return state
-            });
             yield put({ type: 'minus' })
         }
     }
