@@ -1,6 +1,6 @@
 import { createStore, applyMiddleware } from './redux/index'
-import createSagaMiddleware from './redux-saga/index'
-import { call, put, take ,fork} from './redux-saga/effects'
+import createSagaMiddleware,{delay} from './redux-saga/index'
+import { call,put, take ,fork} from './redux-saga/effects'
 function* listenA(){
     while(true){
       const action = yield take('REQUEST');
@@ -10,13 +10,15 @@ function* listenA(){
   function* listenB() {
     while (true) {
       const action = yield take('REQUEST');
+      //yield delay(500)
       console.log('listenB', action);
     }
   }
 function* rootSaga() {
       yield fork(listenA);
       yield fork(listenB);
-      yield put({ type:'REQUEST',title:'1'});
+      yield put({ type:'REQUEST',num:'1'});
+      yield put({ type:'REQUEST',num:'2'});
   }
 const sagaMiddleware = createSagaMiddleware()
 const store = createStore(
