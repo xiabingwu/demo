@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 class App extends PureComponent{
     render(){
         //this.props.name='tencent';
+        //this.props.message.word='hello';
         return <p>{this.props.message.word},{this.props.name}</p>
     }
 }

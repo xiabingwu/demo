@@ -2,7 +2,6 @@ import React, { createElement,PureComponent } from 'react';
 import ReactDOM from 'react-dom';
 class App extends PureComponent{
     render(){
-        //this.props.message.word='hello';
         console.log(Object.getOwnPropertyDescriptor(this.props, 'name'))
         let props={...this.props}
         console.log(Object.getOwnPropertyDescriptor(props, 'name'))
