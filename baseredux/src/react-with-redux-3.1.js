@@ -1,4 +1,4 @@
-import React, { Component, PureComponent } from 'react';
+import React, { Component } from 'react';
 import { createStore,combineReducers } from './redux/index';
 import ReactDOM from 'react-dom';
 function connect(Wrapcomponent){
@@ -7,7 +7,6 @@ function connect(Wrapcomponent){
             this.setState(store.getState())
             store.subscribe(() => {
                 var newState = store.getState();
-                console.log('newState', newState);
                 this.setState(newState);
             });
         }
@@ -72,6 +71,7 @@ class Message extends Component{
         dispatch({ type: 'HELLO' });
     }
     render(){
+        console.log('Message render')
         return (<div>
             {this.props.message}
             <button onClick={this.hello}>click me</button>

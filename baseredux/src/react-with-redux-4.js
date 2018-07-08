@@ -1,4 +1,4 @@
-import React, { Component, PureComponent } from 'react';
+import React, { Component } from 'react';
 import { createStore, combineReducers } from './redux/index';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
@@ -16,7 +16,6 @@ function connect(mapStateToProps) {
                 this.setState(mapStateToProps(store.getState()))
                 store.subscribe(() => {
                     var newState = mapStateToProps(store.getState());
-                    console.log('newState', newState);
                     this.setState(newState);
                 });
             }

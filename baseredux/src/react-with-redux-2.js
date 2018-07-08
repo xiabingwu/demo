@@ -7,7 +7,6 @@ function connect(Wrapcomponent){
             this.setState(store.getState())
             store.subscribe(() => {
                 var newState = store.getState();
-                console.log('newState', newState);
                 this.setState(newState);
             });
         }
@@ -16,7 +15,7 @@ function connect(Wrapcomponent){
             const extraProps={
                 ...this.state,
                 dispatch:store.dispatch
-            }
+            };
             return <Wrapcomponent {...this.props} {...extraProps} />
         }
     }
@@ -26,11 +25,11 @@ function counter(state = { num: 0 }, action) {
         case 'INCREMENT':
             return {
                 num: ++state.num
-            }
+            };
         case 'DECREMENT':
             return {
                 num: --state.num
-            }
+            };
         default:
             return state;
     }
@@ -41,21 +40,22 @@ let store = createStore(combineReducers({counter}));
 @connect
 class Counter extends Component {
     add = () => {
-        const {dispatch}=this.props
+        const {dispatch}=this.props;
         dispatch({ type: 'INCREMENT' });
     }
     minus = () => {
-        const {dispatch}=this.props
+        const {dispatch}=this.props;
         dispatch({ type: 'DECREMENT' });
     }
 
     render() {
         const {counter}=this.props;
+        console.log('Counter render');
         return (<div>
             <p>num:{counter.num} </p>
             <button onClick={this.add}>+</button>
             <button onClick={this.minus}>-</button>
-        </div>)
+        </div>);
     }
 }
 const appTree = (
@@ -63,4 +63,4 @@ const appTree = (
         <Counter />
     </div>
 )
-ReactDOM.render(appTree, document.getElementById('root'))
+ReactDOM.render(appTree, document.getElementById('root'));

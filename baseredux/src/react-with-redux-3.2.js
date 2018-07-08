@@ -8,7 +8,6 @@ function connect(mapStateToProps){
                 this.setState(mapStateToProps(store.getState()))
                 store.subscribe(() => {
                     var newState = mapStateToProps(store.getState());
-                    console.log('newState', newState);
                     this.setState(newState);
                 });
             }
@@ -46,10 +45,6 @@ function message(state = '', action) {
   }
 let store = createStore(combineReducers({counter,message}));
 
-setTimeout(function(){//假设这里是其他组件发出的dispatch
-    console.log('dispatch TENCENT')
-    store.dispatch({type:'TENCENT'})//
-},1000);
 
 
 @connect(({counter})=>{
@@ -88,7 +83,7 @@ class Message extends Component{
         dispatch({ type: 'HELLO' });
     }
     render(){
-        //console.log('Message render')
+        console.log('Message render')
         return (<div>
             {this.props.message}
             <button onClick={this.hello}>click me</button>

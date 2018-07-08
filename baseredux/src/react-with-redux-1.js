@@ -28,12 +28,12 @@ class Counter extends Component {
         this.setState(store.getState())
         store.subscribe(() => {
             var newState = store.getState();
-            console.log('newState', newState);
             this.setState(newState);
         });
     }
 
     render() {
+        console.log('Counter render');
         return (<div>
             <p>num:{this.state.counter.num} </p>
             <button onClick={this.add}>+</button>
