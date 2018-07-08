@@ -6,6 +6,11 @@
 
 - 本课程准备了接近30个demo主要深入讲解react全家桶相关技术，并剖析dva一些特性原理。
 
+### demo运行方法
+
+以react部分运行props-immutable.js为例
+`cd basereact`
+`yarn start  props-immutable.js`
 ### 主要内容：
 
 #### 第一部分：react
