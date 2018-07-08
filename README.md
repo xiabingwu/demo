@@ -9,7 +9,9 @@
 ### demo运行方法
 
 以react部分运行props-immutable.js为例
+
 `cd basereact`
+
 `yarn start  props-immutable.js`
 ### 主要内容：
 
